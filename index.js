@@ -2,15 +2,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+require("dotenv").config();
 // Initialize Express app
 const app = express();
 
 // Body parser middleware
 app.use(bodyParser.json());
 
-// MongoDB connection
-mongoose.connect('mongodb+srv://skkaranth:JHphjKqwbnUcqJh@mymongodb.bxjdenj.mongodb.net/?retryWrites=true&w=majority&appName=mymongodb', { useNewUrlParser: true, useUnifiedTopology: true })
+// // MongoDB connection
+// mongoose.connect('mongodb+srv://skkaranth:JHphjKqwbnUcqJh@mymongodb.bxjdenj.mongodb.net/?retryWrites=true&w=majority&appName=mymongodb', { useNewUrlParser: true, useUnifiedTopology: true })
+//     .then(() => console.log('MongoDB Connected'))
+//     .catch(err => console.log(err));
+
+mongoose.connect(process.env.MONGODB_CONNECT_URI)
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err));
 
